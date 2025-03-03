@@ -139,22 +139,22 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
-      {/* Header with gradient background */}
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Header with more subtle design */}
+      <div className="bg-white border-b border-slate-200 shadow-sm">
         <div className="container mx-auto py-6 px-4 sm:px-6 max-w-5xl">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex items-center">
-              <Wallet className="h-8 w-8 mr-3" />
-              <h1 className="text-3xl font-bold">SplitWise</h1>
+              <Wallet className="h-8 w-8 mr-3 text-indigo-600" />
+              <h1 className="text-3xl font-bold text-slate-800">SplitWise</h1>
             </div>
             
             {/* Balance summary */}
-            <div className="flex items-center bg-white/20 rounded-lg px-4 py-2 backdrop-blur-sm">
-              <DollarSign className="h-5 w-5 mr-2" />
+            <div className="flex items-center bg-slate-50 rounded-lg px-4 py-2 border border-slate-200">
+              <DollarSign className="h-5 w-5 mr-2 text-slate-500" />
               <div>
-                <p className="text-sm font-medium">Your Balance</p>
-                <p className={`text-xl font-bold ${totalOwed >= 0 ? 'text-green-300' : 'text-red-300'}`}>
+                <p className="text-sm font-medium text-slate-600">Your Balance</p>
+                <p className={`text-xl font-bold ${totalOwed >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                   {totalOwed >= 0 ? `+$${totalOwed.toFixed(2)}` : `-$${Math.abs(totalOwed).toFixed(2)}`}
                 </p>
               </div>
@@ -162,7 +162,7 @@ const Index = () => {
             
             <Button 
               onClick={() => setIsAddExpenseOpen(true)}
-              className="bg-white text-indigo-700 hover:bg-indigo-100 hover:text-indigo-800"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white"
             >
               <PlusCircle className="mr-2 h-4 w-4" /> Add Expense
             </Button>
@@ -172,7 +172,7 @@ const Index = () => {
 
       <div className="container mx-auto py-8 px-4 sm:px-6 max-w-5xl">
         <Tabs defaultValue="expenses" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8 bg-indigo-100/50 p-1">
+          <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-100 p-1">
             <TabsTrigger 
               value="expenses" 
               className="flex items-center data-[state=active]:bg-white data-[state=active]:text-indigo-700"
@@ -195,8 +195,8 @@ const Index = () => {
 
           <TabsContent value="expenses">
             <Card className="border-none shadow-md">
-              <CardHeader className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-t-lg">
-                <CardTitle className="text-indigo-800">Expense History</CardTitle>
+              <CardHeader className="bg-slate-50 rounded-t-lg border-b border-slate-100">
+                <CardTitle className="text-slate-800">Expense History</CardTitle>
                 <CardDescription>
                   View and manage all your shared expenses
                 </CardDescription>
@@ -213,8 +213,8 @@ const Index = () => {
 
           <TabsContent value="friends">
             <Card className="border-none shadow-md">
-              <CardHeader className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-t-lg">
-                <CardTitle className="text-indigo-800">Friends</CardTitle>
+              <CardHeader className="bg-slate-50 rounded-t-lg border-b border-slate-100">
+                <CardTitle className="text-slate-800">Friends</CardTitle>
                 <CardDescription>
                   Manage your friends and see who you owe
                 </CardDescription>
@@ -230,8 +230,8 @@ const Index = () => {
 
           <TabsContent value="balances">
             <Card className="border-none shadow-md">
-              <CardHeader className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-t-lg">
-                <CardTitle className="text-indigo-800">Balance Overview</CardTitle>
+              <CardHeader className="bg-slate-50 rounded-t-lg border-b border-slate-100">
+                <CardTitle className="text-slate-800">Balance Overview</CardTitle>
                 <CardDescription>
                   See who owes you and who you owe
                 </CardDescription>
@@ -256,5 +256,3 @@ const Index = () => {
     </div>
   );
 };
-
-export default Index;
