@@ -162,27 +162,27 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
   return (
     <div className="space-y-10">
       {/* Summary Card */}
-      <Card className="border-none shadow-md bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+      <Card className="border border-slate-200 shadow-sm bg-white">
         <CardContent className="p-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
-              <h3 className="text-xl font-semibold mb-1 flex items-center">
-                <DollarSign className="h-5 w-5 mr-2" />
+              <h3 className="text-xl font-semibold mb-1 flex items-center text-slate-800">
+                <DollarSign className="h-5 w-5 mr-2 text-indigo-600" />
                 Total Balance
               </h3>
-              <p className="text-indigo-100 text-sm">Your overall balance across all friends</p>
+              <p className="text-slate-500 text-sm">Your overall balance across all friends</p>
             </div>
             <div className="text-center">
-              <p className={`text-3xl font-bold ${totalBalance >= 0 ? 'text-green-300' : 'text-red-300'}`}>
+              <p className={`text-3xl font-bold ${totalBalance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                 {totalBalance >= 0 ? `+$${totalBalance.toFixed(2)}` : `-$${Math.abs(totalBalance).toFixed(2)}`}
               </p>
               <div className="flex items-center justify-center mt-1">
                 {totalBalance >= 0 ? (
-                  <div className="flex items-center text-green-300 text-sm">
+                  <div className="flex items-center text-green-600 text-sm">
                     <TrendingUp className="h-4 w-4 mr-1" /> You are owed money
                   </div>
                 ) : (
-                  <div className="flex items-center text-red-300 text-sm">
+                  <div className="flex items-center text-red-600 text-sm">
                     <TrendingDown className="h-4 w-4 mr-1" /> You owe money
                   </div>
                 )}
@@ -194,18 +194,18 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
 
       <div>
         <div className="flex items-center mb-4">
-          <div className="bg-indigo-100 p-2 rounded-full mr-3">
-            <ArrowRightLeft className="h-5 w-5 text-indigo-700" />
+          <div className="bg-slate-100 p-2 rounded-full mr-3">
+            <ArrowRightLeft className="h-5 w-5 text-slate-600" />
           </div>
-          <h3 className="text-xl font-semibold text-indigo-800">Current Balances</h3>
+          <h3 className="text-xl font-semibold text-slate-800">Current Balances</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {balances.length === 0 ? (
-            <Card className="col-span-2 border-none shadow-md">
+            <Card className="col-span-2 border border-slate-200 shadow-sm">
               <CardContent className="p-8 text-center">
                 <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-3" />
-                <h3 className="text-lg font-medium text-gray-800 mb-1">All Settled Up!</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-lg font-medium text-slate-800 mb-1">All Settled Up!</h3>
+                <p className="text-slate-500">
                   All expenses are settled! No balances to show.
                 </p>
               </CardContent>
@@ -219,10 +219,10 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
               return (
                 <Card 
                   key={balance.friendId} 
-                  className={`overflow-hidden border-none shadow-md ${
+                  className={`overflow-hidden border border-slate-200 shadow-sm ${
                     isPositive 
-                      ? 'bg-gradient-to-r from-green-50 to-emerald-50' 
-                      : 'bg-gradient-to-r from-red-50 to-orange-50'
+                      ? 'bg-green-50' 
+                      : 'bg-red-50'
                   }`}
                 >
                   <CardContent className="p-6 flex items-center gap-4">
@@ -230,7 +230,7 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
                       <AvatarFallback>{getInitials(friendName)}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
-                      <p className="font-semibold text-lg text-gray-800">{friendName}</p>
+                      <p className="font-semibold text-lg text-slate-800">{friendName}</p>
                       {isYou ? (
                         <p className={`text-lg font-medium ${isPositive ? "text-green-600" : "text-red-600"}`}>
                           {isPositive 
@@ -266,35 +266,35 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
 
       <div>
         <div className="flex items-center mb-4">
-          <div className="bg-indigo-100 p-2 rounded-full mr-3">
-            <ArrowRight className="h-5 w-5 text-indigo-700" />
+          <div className="bg-slate-100 p-2 rounded-full mr-3">
+            <ArrowRight className="h-5 w-5 text-slate-600" />
           </div>
-          <h3 className="text-xl font-semibold text-indigo-800">Suggested Settlements</h3>
+          <h3 className="text-xl font-semibold text-slate-800">Suggested Settlements</h3>
         </div>
         {settlements.length === 0 ? (
-          <Card className="border-none shadow-md">
+          <Card className="border border-slate-200 shadow-sm">
             <CardContent className="p-8 text-center">
               <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-3" />
-              <h3 className="text-lg font-medium text-gray-800 mb-1">No Settlements Needed</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-lg font-medium text-slate-800 mb-1">No Settlements Needed</h3>
+              <p className="text-slate-500">
                 All balances are settled! No payments needed.
               </p>
             </CardContent>
           </Card>
         ) : (
-          <div className="rounded-lg overflow-hidden border-none shadow-md">
+          <div className="rounded-lg overflow-hidden border border-slate-200 shadow-sm">
             <Table>
-              <TableHeader className="bg-indigo-50">
+              <TableHeader className="bg-slate-50">
                 <TableRow>
-                  <TableHead className="font-medium text-indigo-800">From</TableHead>
+                  <TableHead className="font-medium text-slate-700">From</TableHead>
                   <TableHead></TableHead>
-                  <TableHead className="font-medium text-indigo-800">To</TableHead>
-                  <TableHead className="text-right font-medium text-indigo-800">Amount</TableHead>
+                  <TableHead className="font-medium text-slate-700">To</TableHead>
+                  <TableHead className="text-right font-medium text-slate-700">Amount</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {settlements.map((settlement, index) => (
-                  <TableRow key={index} className="hover:bg-indigo-50/50 transition-colors">
+                  <TableRow key={index} className="hover:bg-slate-50 transition-colors">
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <Avatar className={`h-10 w-10 ${getRandomColor(getFriendName(settlement.fromId))} ring-2 ring-white`}>
@@ -308,8 +308,8 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center justify-center">
-                        <div className="bg-indigo-100 p-2 rounded-full">
-                          <ArrowRight className="h-5 w-5 text-indigo-600" />
+                        <div className="bg-slate-100 p-2 rounded-full">
+                          <ArrowRight className="h-5 w-5 text-slate-600" />
                         </div>
                       </div>
                     </TableCell>
@@ -325,7 +325,7 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
                       </div>
                     </TableCell>
                     <TableCell className="text-right">
-                      <div className="bg-green-50 px-3 py-2 rounded-lg inline-block">
+                      <div className="bg-green-50 px-3 py-2 rounded-lg inline-block border border-green-100">
                         <span className="text-lg font-semibold text-green-700">
                           ${settlement.amount.toFixed(2)}
                         </span>
@@ -341,5 +341,3 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
     </div>
   );
 };
-
-export default BalanceOverview;
