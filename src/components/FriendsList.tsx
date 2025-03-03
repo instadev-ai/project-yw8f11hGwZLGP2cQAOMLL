@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { PlusCircle, UserPlus, Mail } from "lucide-react";
+import { PlusCircle, UserPlus, Mail, Phone, MapPin, Share2 } from "lucide-react";
 import { Friend } from "@/pages/Index";
 
 interface FriendsListProps {
@@ -69,26 +69,32 @@ const FriendsList = ({ friends, onAddFriend }: FriendsListProps) => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-medium">Your Friends</h3>
+        <div>
+          <h3 className="text-xl font-semibold text-indigo-800">Your Friends</h3>
+          <p className="text-sm text-slate-500 mt-1">People you split expenses with</p>
+        </div>
         <Dialog open={isAddFriendOpen} onOpenChange={setIsAddFriendOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">
+            <Button 
+              size="sm"
+              className="bg-indigo-600 hover:bg-indigo-700"
+            >
               <UserPlus className="mr-2 h-4 w-4" />
               Add Friend
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-              <DialogTitle>Add a New Friend</DialogTitle>
+              <DialogTitle className="text-indigo-800">Add a New Friend</DialogTitle>
               <DialogDescription>
                 Add someone to split expenses with
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="name" className="text-indigo-700">Name</Label>
                 <Input
                   id="name"
                   placeholder="Enter friend's name"
@@ -96,10 +102,11 @@ const FriendsList = ({ friends, onAddFriend }: FriendsListProps) => {
                   onChange={(e) =>
                     setNewFriend({ ...newFriend, name: e.target.value })
                   }
+                  className="border-indigo-100 focus-visible:ring-indigo-400"
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="email">Email (optional)</Label>
+                <Label htmlFor="email" className="text-indigo-700">Email (optional)</Label>
                 <Input
                   id="email"
                   type="email"
@@ -108,11 +115,17 @@ const FriendsList = ({ friends, onAddFriend }: FriendsListProps) => {
                   onChange={(e) =>
                     setNewFriend({ ...newFriend, email: e.target.value })
                   }
+                  className="border-indigo-100 focus-visible:ring-indigo-400"
                 />
               </div>
             </div>
             <DialogFooter>
-              <Button onClick={handleAddFriend}>Add Friend</Button>
+              <Button 
+                onClick={handleAddFriend}
+                className="bg-indigo-600 hover:bg-indigo-700"
+              >
+                Add Friend
+              </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
@@ -120,39 +133,58 @@ const FriendsList = ({ friends, onAddFriend }: FriendsListProps) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {friends.map((friend) => (
-          <Card key={friend.id} className="overflow-hidden">
-            <CardContent className="p-4 flex items-center gap-4">
-              <Avatar className={`h-12 w-12 ${getRandomColor(friend.name)}`}>
-                <AvatarFallback>{getInitials(friend.name)}</AvatarFallback>
+          <Card 
+            key={friend.id} 
+            className="overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow"
+          >
+            <CardContent className="p-6 flex items-center gap-4">
+              <Avatar className={`h-16 w-16 ${getRandomColor(friend.name)} ring-2 ring-white ring-offset-2`}>
+                <AvatarFallback className="text-lg">{getInitials(friend.name)}</AvatarFallback>
               </Avatar>
               <div className="flex-1 min-w-0">
-                <p className="font-medium truncate">{friend.name}</p>
+                <p className="font-semibold text-lg truncate text-indigo-800">{friend.name}</p>
                 {friend.email && (
-                  <p className="text-sm text-muted-foreground flex items-center gap-1 truncate">
-                    <Mail className="h-3 w-3" />
+                  <p className="text-sm text-slate-500 flex items-center gap-1 truncate mt-1">
+                    <Mail className="h-3.5 w-3.5" />
                     {friend.email}
                   </p>
                 )}
+                <div className="flex gap-2 mt-3">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-xs border-indigo-100 text-indigo-600 hover:bg-indigo-50"
+                  >
+                    <Phone className="h-3 w-3 mr-1" /> Contact
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-xs border-indigo-100 text-indigo-600 hover:bg-indigo-50"
+                  >
+                    <Share2 className="h-3 w-3 mr-1" /> Share
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
         ))}
 
-        <Card className="overflow-hidden border-dashed">
-          <CardContent className="p-4 flex items-center justify-center">
+        <Card className="overflow-hidden border-dashed border-indigo-200 bg-indigo-50/50 hover:bg-indigo-50 transition-colors">
+          <CardContent className="p-6 flex items-center justify-center">
             <Button 
               variant="ghost" 
-              className="h-full w-full flex flex-col gap-2 py-6"
+              className="h-full w-full flex flex-col gap-3 py-8 text-indigo-500 hover:text-indigo-700 hover:bg-transparent"
               onClick={() => setIsAddFriendOpen(true)}
             >
-              <PlusCircle className="h-8 w-8 text-muted-foreground" />
-              <span className="text-muted-foreground">Add Friend</span>
+              <div className="h-16 w-16 rounded-full bg-indigo-100 flex items-center justify-center">
+                <PlusCircle className="h-8 w-8" />
+              </div>
+              <span className="font-medium">Add New Friend</span>
+              <p className="text-xs text-slate-500">Split expenses with more people</p>
             </Button>
           </CardContent>
         </Card>
       </div>
     </div>
   );
-};
-
-export default FriendsList;
