@@ -188,3 +188,6 @@ const FriendsList = ({ friends, onAddFriend }: FriendsListProps) => {
       </div>
     </div>
   );
+};
+
+export default FriendsList;

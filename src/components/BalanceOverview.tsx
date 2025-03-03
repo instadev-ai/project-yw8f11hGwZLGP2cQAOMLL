@@ -341,3 +341,5 @@ const BalanceOverview = ({ expenses, friends }: BalanceOverviewProps) => {
     </div>
   );
 };
+
+export default BalanceOverview;

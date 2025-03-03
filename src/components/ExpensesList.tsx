@@ -279,3 +279,5 @@ const ExpensesList = ({ expenses, friends, onSettleExpense }: ExpensesListProps)
     </div>
   );
 };
+
+export default ExpensesList;
